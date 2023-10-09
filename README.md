@@ -1,9 +1,6 @@
 # dot-flat-json
 Parses JSON data directly to a flat dictionary with dotted keys without parsing to Python objects first.  
 
-
-{"x.y.z": 10}
-
 ## Example
 Given a JSON object such as:
 

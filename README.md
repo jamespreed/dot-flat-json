@@ -85,7 +85,7 @@ The index of each element in a JSON array is added to the key chain.  The defaul
 Passing an empty string or `None` will remove the encasement.
 ```python
 >>> json_str = """{ "goodnight": ["moon", "room", "cow"] } """
->>> fjp = FlatJSONParser(encase_dict_key=('<|', '|>'))
+>>> fjp = FlatJSONParser()
 >>> fjp.parse(json_str)
 {'goodnight.[0]': 'moon',
  'goodnight.[1]': 'room',
@@ -93,12 +93,13 @@ Passing an empty string or `None` will remove the encasement.
 ```
 
 ### Arrays of objects
-Arrays of objects are chained as you would expect, with the keys from the JSON ojects chaining against the array index.
+Arrays of objects are chained as you would expect, with the keys from the JSON ojects chaining against the array index.  Here, the `encase_list_ix` is passed to change how
+the array indices are displayed.
 ```python
 >>> json_str = """{ "goodnight": [{"moon": "zzz..."}, {"room": "shhhh...."}, {"cow": "moooo?"}] } """
->>> fjp = FlatJSONParser(encase_dict_key=('<|', '|>'))
+>>> fjp = FlatJSONParser(encase_list_ix=('@', ''))
 >>> fjp.parse(json_str)
-{'goodnight.[0].moon': 'zzz...',
- 'goodnight.[1].room': 'shhhh....',
- 'goodnight.[2].cow': 'moooo?'}
+{'goodnight.@0.moon': 'zzz...',
+ 'goodnight.@1.room': 'shhhh....',
+ 'goodnight.@2.cow': 'moooo?'}
 ```
